@@ -2,8 +2,8 @@
 
 # .codestacker 🏗️
 
-![Version](https://img.shields.io/badge/version-1.0.0-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/status-early%20development-red?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.3.0-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-production-green?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-yellow?style=for-the-badge)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)
 
@@ -27,7 +27,7 @@ Built by **[CoSama](https://cosama.co)** — AI Development Company
 
 </div>
 
-> ⚠️ **Early Development — v1.0.0**
+> ⚠️ **Version 2.3.0**
 > This is an early-stage release. The system is functional and ready to use, but expect active development, evolving documentation, and new features as the project grows. Contributions and feedback are welcome.
 
 ---
@@ -66,49 +66,32 @@ This is how you build real products with AI, at pace, without chaos.
 
 ---
 
-## 🏗️ What is CodeStacker?
+## 🏗️ What is CodeStacker 2.3?
 
-We built CodeStacker because the tools weren't keeping up with how developers actually work with AI.
+We built CodeStacker because the tools weren't keeping up with how developers actually work with AI. In early iterations, AI coding lacked structure and memory. 
 
-As AI coding assistants became genuinely powerful, a new problem emerged: the AI itself became the bottleneck. Not because it wasn't capable — but because there was no system to manage it. Every session started from zero. Every decision was undocumented. Every mistake was repeated. Teams were spending more time corralling their AI tools than building their products.
-
-We needed a layer between the developer and the AI. Something that enforced discipline, preserved context, and turned an unpredictable assistant into a reliable engineering partner. Something that lived in the project, worked with any AI tool, and required no external services to get started.
+With **version 2.3**, CodeStacker evolves into an Enterprise-Grade **Rigid Architecture** for AI-assisted development. We introduced **Workspaces**, the **Federated Master Index**, and **The Director** prompt gate to enforce strict isolation, traceability, and architectural integrity. 
 
 **That's `.codestacker`.**
 
-`.codestacker` is a folder-based AI agent management system that sits inside your project and governs how your AI assistant behaves. It enforces a structured **specify → plan → implement** workflow. It keeps the AI on scope, on spec, and fully documented — from the first line of code to handoff.
+`.codestacker` is a persistent, folder-based hierarchical AI agent management system that sits inside your project. It eliminates "prompt-drift" by physically forcing AI models (like Claude or GPT) to operate within strict boundary configurations, separating core tasks from massive feature epics.
 
 One folder. Any AI. Total control.
 
 ---
 
-## ✨ Features
+## ✨ Version 2.3 Top-Level Features
 
-- **📋 Plan-First Workflow** — Every task starts with a written plan and checklist. The AI cannot implement until you review and approve. No more "what did it just do?"
-
-- **🚫 Zero Drift** — Strict scope enforcement. The AI works only what's in the approved plan. No added features, no scope creep, no surprise refactors.
-
-- **🔍 Structure-Aware Planning** — Before every plan, the AI reads your actual project structure, schema, and architecture docs. Plans are based on what's real, not what it assumes.
-
-- **🛠️ Skill System with Auto-Builder** — AI capabilities are loaded from skill files for every technology in your stack. Missing a skill? The built-in **CodeStacker Skill Builder** auto-generates one on the spot, then flags it for upgrade to an engineering-grade version from the marketplace.
-
-- **🏷️ Tag-Based Skill Registry** — Skills are indexed by tag (`#react`, `#supabase`, `#docker`) for instant lookup. Query with `Mode Skill #[tag]` — the AI finds, loads, or builds the right skill automatically.
-
-- **📝 Full Session Traceability** — Every session is recorded. Every decision documented. Every error logged. You always know what the AI did, when, and why.
-
-- **🧠 Context Window Management** — The AI monitors its own context, writes a full summary at 80%, and signals when a clean handoff is needed. No lost context between sessions.
-
-- **📊 Error Reporting & Learning** — When the AI makes a mistake, it documents it in `reports/`. Patterns are visible. Rules can be tightened. The same mistake doesn't happen twice.
-
-- **🎮 Mode Command System** — Simple, memorable commands (`Mode Plan`, `Mode Approved`, `Mode Fix`, `Mode Finish`) control exactly what the AI is allowed to do at any moment.
-
-- **🎭 Props — Specialized AI Personas** *(Marketplace)* — Load a Prop to instantly transform your AI into a role-specific expert: senior engineer, API architect, security auditor, and more. Each Prop bundles a Persona, system instructions, and a matched skills set.
-
-- **⚙️ Agentic Workflows** *(Marketplace)* — Deploy coordinated agent teams for complex, assignment-oriented tasks. Spec Agent → Planner → Implementer → Tester → Documenter — fully managed, fully traced.
-
-- **🔌 Tool Agnostic** — Works with Cursor, GitHub Copilot, GPT, Gemini, or any AI assistant that reads files. No lock-in.
-
-- **🌐 Community Skills Library** — 2,800+ community-built skills available via [CodeStacker-Skills](https://github.com/CoSama-Ai/CodeStacker-Skills), curated from the open-source AI development ecosystem.
+- **🏢 Isolated Epic Workspaces** — Massive features are built in dedicated, isolated environments (`Mode Workspace`). This prevents AI context windows from overloading and protects the global state from accidental overwrites.
+- **🗂️ Federated Master Index** — Workspaces dynamically sync their findings into a central architecture index (`00_master_index.md`). Models always begin here to understand the overarching system reality.
+- **🎬 The Director AI** — Before a single line of code is written in a Workspace, the "Director" AI interviews you to define goals, complexity gates, and attach necessary APIs or tools.
+- **🔒 Complexity Governance Gates** — Control the AI's autonomy explicitly: use `Gate Review` for strict human-in-the-loop code review checkpoints, or `Gate Full Auto` for maximum velocity and self-healing.
+- **🤖 Specialized Agent Personas** — Deploy experts like "Security Auditor", "QA Tester", and "Vibe Coder" from the `AGENT_REGISTRY.md` to tackle logical sub-tasks governed by The Director.
+- **🔑 The Credential Protocol** — Strict enforcement ensuring AI models never write plaintext API keys into the `.codestacker/` memory, relying purely on standard `.env` variables for 100% compliance.
+- **🧰 Dynamic Tool Registry** — CodeStacker dynamically scans `TOOL_REGISTRY.md` so the AI knows its exact capabilities (e.g., executing a Postgres CLI or scraping via Firecrawl).
+- **📋 Plan-First Workflow** — Every task requires a formalized Mission Plan and checklist. The AI cannot implement until you review and approve it.
+- **🚫 Zero Drift** — Strict scope enforcement. Models only work within the approved Mission Plan bounds.
+- **📊 Error Reporting & Telemetry** — The AI manages a visual `dashboard.md` within work environments, tracking progress via Mermaid charts and logging all failures seamlessly.
 
 ---
 
