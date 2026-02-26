@@ -67,15 +67,75 @@ An AI model inside Code Stacker is instructed to **NEVER** write a plaintext API
 Code Stacker features an intelligent mapping layer for 3rd party tooling. The AI dynamically scans `tools/TOOL_REGISTRY.md` to identify what external abilities it has (such as using a Postgres CLI, scraping with Firecrawl, or interacting with a Model Context Protocol). 
 You can update these parameters organically as the project expands.
 
-## 📋 5. Common AI Commands
+## 📋 5. Comprehensive Mode Commands
 
 Use these inputs in chat to physically drive the internal state of the Code Stacker Application Framework:
 
+### Core Workflow
 | Command | Action |
-| :--- | :--- |
-| `Mode Free` | Executes quick tasks mapped directly into `Core` workspace memory. |
-| `Mode Plan` | Stiffer validation. Forces the AI to write a checklist before coding. |
-| `Mode Workspace` | Triggers a full-scale Epic deployment, requiring a setup interview. |
-| `Mode Tool Index` | Forces the AI to re-scan `/tools` to understand new MCPs/APIs. |
-| `Gate Review` | Halts the AI workspace loop after *every* action for manual code review. |
-| `Gate Full Auto` | Gives the AI maximum autonomy allowing for self-healing error resolution. |
+|---------|--------|
+| `Mode New Project` | Initialize entire system with project details |
+| `Mode Start` | Verify system, check docs, report status |
+| `Mode Free` | Turn off planning completely. Pure conversational ad-hoc coding in `Core` workspace. |
+| `Mode Plan` | Read context, create AI intent checklist (`active_plan.md`). Standard operation. |
+| `Mode Plan Agents` | Same as `Mode Plan`, but Director AI assigns tasks to sub-agents. |
+| `Mode Workspace` | **Enterprise scope**. Sets up a strict `.codestacker/workspaces/[name]/` hierarchy. |
+| `Mode Approved` | Run the tasks in `active_plan.md`. |
+| `Mode Fix` | Diagnose and fix an error |
+| `Mode Proceed` | Continue last approved plan |
+| `Mode Finish` | Full summary + structure update + final check |
+
+### System Management
+| Command | Action |
+|---------|--------|
+| `Mode Reset` | Reread entire system |
+| `Mode Report` | Document a failure/error in `reports/` |
+| `Mode Update Env` | Scan codebase and refresh all project structure documentation |
+| `Mode Rule` | Add a new project rule |
+| `Mode Help` | Display all commands |
+
+### Skills, Agents & Tools
+| Command | Action |
+|---------|--------|
+| `Mode Skill Library` | List all installed skills |
+| `Mode Skill #[tag]` | Show installed skills matching tag (e.g. `#ui`, `#supabase`) |
+| `Mode Skill Build` | Launch skill-builder to create a new skill |
+| `Mode Skill Import` | Import a skill from CodeStacker-Skills community repo |
+| `Mode Skill Index` | Rebuild the skill registry from installed skill files |
+| `Mode Agent Library` | List all available team members |
+| `Mode Agent Spawn [name]` | Spawn a specific team member from the registry |
+| `Mode Agent Team` | Provide a prompt; AI will auto-select and spawn a team |
+| `Mode Agent Index` | Rebuild AGENT_REGISTRY.md from installed agent files |
+| `Mode Workspace Library` | List all available enterprise workspaces |
+| `Mode Workspace Index` | Rebuild WORKSPACE_REGISTRY.md from existing workspaces |
+| `Mode Tool Index` | Scan `.codestacker/tools/` to rebuild `TOOL_REGISTRY.md` |
+
+### Props & Workflows (Marketplace)
+| Command | Action |
+|---------|--------|
+| `Mode Props` | Load a specialized AI Prop (requires API key) |
+| `Mode Workflow` | Run a specialized agentic Workflow (requires API key) |
+
+### Governance & Approval Gates 🔒
+*(Dictates the level of Human-In-The-Loop interactions for autonomous agents)*
+| Command | Setting |
+|---|---|
+| `Gate Full Auto` | Maximum velocity. Agents execute full plan with zero interruptions. Overrides errors with self-healing analysis. Good for vibe-coding. |
+| `Gate Plan` | Medium safety. Pauses for human approval on the master plan & agent assignments. On error: halts, logs to `error_log.md`, creates "Fix Plan", and waits for approval. |
+| `Gate Review` | Strict Enterprise safety. (DEFAULT). Pauses for human code review pull-request/checkpoint before moving to next task. On error: halts, logs to `error_log.md`, alerts user. |
+
+---
+
+## ⚡ 6. Best Practices & Troubleshooting
+
+### Best Practices:
+- **✅ Always start with `Mode Start`** to synchronize the AI context.
+- **✅ Never skip `Mode Plan`** for large implementations.
+- **✅ Treat `.env` as sacred.** Let the Credential Protocol protect your keys.
+- **❌ Don't let contexts overflow.** Use `Mode Finish` to write a handoff summary and clear the chat context window manually.
+
+### Troubleshooting:
+- **AI seems confused?** → `Mode Reset`
+- **Missing environment context?** → `Mode Update Env`
+- **Need a missing skill package?** → `Mode Skill Build` or `Mode Skill Import`
+- **Model acting autonomously when it shouldn't?** → Ensure you are on `Gate Review` instead of `Gate Full Auto`.

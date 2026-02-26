@@ -617,7 +617,7 @@ CodeStacker provides structure and context to AI models — it does not control 
 
 ---
 
-🚦 **Status:** 🟡 v1.0.0 — Early development, actively evolving
+🚦 **Status:** 🟢 v2.3.0 — Production-ready, actively evolving
 🔮 **Roadmap:** IDE plugins · Skill auto-install · Analytics dashboard · More Props & Workflows
 
 Part of the **[CodeStacker](https://codestacker.co)** marketplace — AI prompts, skills & agentic workflows
